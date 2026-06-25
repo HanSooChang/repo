@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>키퍼코리아 워크샵 안내</title>
+<title>키퍼코리아 제1회 워크샵 안내</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.min.css">
 <style>
   :root{
@@ -60,13 +60,6 @@
     font-size:15px;color:rgba(255,255,255,.92);position:relative;z-index:1;
   }
   .hero .meta b{font-weight:700;color:#fff}
-  .place-link{
-    display:inline-flex;align-items:center;gap:6px;
-    margin-top:16px;padding:9px 15px;position:relative;z-index:1;
-    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
-    color:#fff;text-decoration:none;border-radius:999px;
-    font-size:14px;font-weight:600;backdrop-filter:blur(4px);
-  }
 
   /* SECTION */
   .sec{margin-top:30px}
@@ -126,32 +119,63 @@
     flex:none;font-size:12px;font-weight:800;color:#fff;background:var(--water);
     padding:8px 12px;border-radius:999px;white-space:nowrap;
   }
-  .pick-note{
-    font-size:13px;color:var(--muted);margin-top:11px;padding-left:2px;
-  }
+  .pick-note{font-size:13px;color:var(--muted);margin-top:11px;padding-left:2px;}
 
-  /* SHOPPING */
-  .shop{display:grid;gap:9px}
-  .shop li{
-    list-style:none;display:flex;align-items:flex-start;gap:11px;
+  /* SHOPPING CHECKLIST */
+  .shop-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:14px;padding-left:2px;
+  }
+  .shop-progress{font-size:13px;font-weight:700;color:var(--water-deep);}
+  .shop-progress b{color:var(--sun);font-variant-numeric:tabular-nums;}
+  .reset-btn{
+    font-size:12px;font-weight:700;color:var(--muted);background:none;
+    border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;
+  }
+  .reset-btn:active{background:var(--sun-soft)}
+  .shop-group{margin-bottom:16px}
+  .shop-group:last-of-type{margin-bottom:0}
+  .group-label{
+    font-size:12px;font-weight:800;color:var(--water);letter-spacing:.04em;
+    margin:0 0 8px 2px;text-transform:uppercase;
+  }
+  .check{
+    display:flex;align-items:center;gap:13px;
     background:var(--card);border:1px solid var(--line);border-radius:12px;
-    padding:13px 15px;
+    padding:14px 15px;margin-bottom:8px;cursor:pointer;
+    transition:background .12s,border-color .12s;
+    -webkit-tap-highlight-color:transparent;user-select:none;
   }
-  .shop li .dot{
-    flex:none;width:7px;height:7px;border-radius:50%;background:var(--sun);margin-top:8px;
+  .check:last-child{margin-bottom:0}
+  .check input{position:absolute;opacity:0;width:0;height:0;}
+  .box{
+    flex:none;width:24px;height:24px;border-radius:7px;
+    border:2px solid var(--line);background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .12s,border-color .12s;
   }
-  .shop li .label{font-size:14px;font-weight:600}
-  .shop li .detail{font-size:13px;color:var(--muted);margin-top:1px}
+  .box svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:opacity .12s,transform .12s;}
+  .check .txt{font-size:15.5px;font-weight:600;transition:color .12s;}
+  .check input:checked ~ .box{background:var(--sun);border-color:var(--sun);}
+  .check input:checked ~ .box svg{opacity:1;transform:scale(1);}
+  .check input:checked ~ .txt{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--sun);}
+  .check input:focus-visible ~ .box{outline:2px solid var(--water);outline-offset:2px;}
+  .check.done{background:#FBF8F2;border-color:var(--sun-soft);}
+  .shop-note{font-size:13px;color:var(--muted);margin-top:12px;padding-left:2px;line-height:1.55}
 
   .foot{text-align:center;margin-top:40px;font-size:12px;color:var(--muted);letter-spacing:.02em}
+
+  @media (prefers-reduced-motion: reduce){
+    .box,.box svg,.check .txt,.check{transition:none}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="hero">
-    <div class="eyebrow">Keeper Korea · Summer Workshop</div>
-    <h1>여름 워크샵<br><span class="accent">가평으로</span> 떠납니다</h1>
+    <div class="eyebrow">Keeper Korea · 제1회 워크샵</div>
+    <h1>제1회 워크샵<br><span class="accent">가평으로</span> 떠납니다</h1>
     <div class="meta">
       <span><b>6월 26일 (금) ~ 27일 (토)</b></span>
       <span>가평 마로니에펜션</span>
@@ -198,8 +222,9 @@
       <div class="chips">
         <span class="chip">물놀이 옷</span>
         <span class="chip">아쿠아슈즈</span>
+        <span class="chip">그 외 개인 물품</span>
       </div>
-      <p class="note">아쿠아슈즈가 없으면 맨발로만 이용할 수 있습니다. 그 외 개인 물품은 각자 챙겨 주세요.</p>
+      <p class="note">아쿠아슈즈가 없으면 빠지는 맨발로만 이용할 수 있습니다.</p>
     </div>
   </section>
 
@@ -207,15 +232,15 @@
     <div class="sec-head"><span class="num">03</span><h2>점심 후보</h2></div>
     <div class="lunch">
       <a href="https://naver.me/5noPZMkN" target="_blank" rel="noopener">
-        <span><span class="name">고향맛집</span><span class="dish">황태더덕구이정식</span></span>
+        <span><span class="name">고향맛집</span><span class="dish"> : 황태더덕구이정식</span></span>
         <span class="go">지도</span>
       </a>
       <a href="https://naver.me/GBFHklBl" target="_blank" rel="noopener">
-        <span><span class="name">해낙전</span><span class="dish">해물볶음</span></span>
+        <span><span class="name">해낙전</span><span class="dish"> : 해물볶음</span></span>
         <span class="go">지도</span>
       </a>
       <a href="https://naver.me/5CW7UzyJ" target="_blank" rel="noopener">
-        <span><span class="name">청평호반닭갈비막국수</span><span class="dish">닭갈비 · 막국수</span></span>
+        <span><span class="name">청평호반닭갈비막국수</span><span class="dish"> : 닭갈비 · 막국수</span></span>
         <span class="go">지도</span>
       </a>
     </div>
@@ -224,20 +249,119 @@
 
   <section class="sec">
     <div class="sec-head"><span class="num">04</span><h2>장보기 목록</h2></div>
-    <ul class="shop">
-      <li><span class="dot"></span><span><span class="label">주류</span><span class="detail">맥주, 소주</span></span></li>
-      <li><span class="dot"></span><span><span class="label">1회용품</span><span class="detail">수저세트, 접시, 그릇, 호일</span></span></li>
-      <li><span class="dot"></span><span><span class="label">조미료</span><span class="detail">쌈장 등 (소금은 별도 준비)</span></span></li>
-      <li><span class="dot"></span><span><span class="label">채소</span><span class="detail">상추, 깻잎, 청양고추, 마늘</span></span></li>
-      <li><span class="dot"></span><span><span class="label">식사류</span><span class="detail">라면, 햇반, 김치</span></span></li>
-      <li><span class="dot"></span><span><span class="label">음료</span><span class="detail">물, 음료</span></span></li>
-      <li><span class="dot"></span><span><span class="label">주전부리</span><span class="detail">과자, 건어물</span></span></li>
-      <li><span class="dot"></span><span><span class="label">콘치즈 재료</span><span class="detail">옥수수통조림, 치즈, 호일접시</span></span></li>
-    </ul>
+    <div class="shop-bar">
+      <span class="shop-progress"><b id="shopCount">0</b> / <span id="shopTotal">0</span> 담음</span>
+      <button class="reset-btn" id="resetBtn" type="button">전체 해제</button>
+    </div>
+
+    <div id="shopList">
+      <div class="shop-group">
+        <p class="group-label">주류</p>
+        <label class="check"><input type="checkbox" data-k="s01"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">맥주</span></label>
+        <label class="check"><input type="checkbox" data-k="s02"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">소주</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">1회용품</p>
+        <label class="check"><input type="checkbox" data-k="s03"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">수저세트</span></label>
+        <label class="check"><input type="checkbox" data-k="s04"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">접시</span></label>
+        <label class="check"><input type="checkbox" data-k="s05"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">그릇</span></label>
+        <label class="check"><input type="checkbox" data-k="s06"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">호일</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">조미료</p>
+        <label class="check"><input type="checkbox" data-k="s07"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">쌈장</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">채소</p>
+        <label class="check"><input type="checkbox" data-k="s08"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">상추</span></label>
+        <label class="check"><input type="checkbox" data-k="s09"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">깻잎</span></label>
+        <label class="check"><input type="checkbox" data-k="s10"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">청양고추</span></label>
+        <label class="check"><input type="checkbox" data-k="s11"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">마늘</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">식사류</p>
+        <label class="check"><input type="checkbox" data-k="s12"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">라면</span></label>
+        <label class="check"><input type="checkbox" data-k="s13"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">햇반</span></label>
+        <label class="check"><input type="checkbox" data-k="s14"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">김치</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">음료</p>
+        <label class="check"><input type="checkbox" data-k="s15"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">물</span></label>
+        <label class="check"><input type="checkbox" data-k="s16"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">음료</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">주전부리</p>
+        <label class="check"><input type="checkbox" data-k="s17"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">과자</span></label>
+        <label class="check"><input type="checkbox" data-k="s18"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">건어물</span></label>
+      </div>
+
+      <div class="shop-group">
+        <p class="group-label">콘치즈 재료</p>
+        <label class="check"><input type="checkbox" data-k="s19"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">옥수수통조림</span></label>
+        <label class="check"><input type="checkbox" data-k="s20"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">치즈</span></label>
+        <label class="check"><input type="checkbox" data-k="s21"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span class="txt">호일접시</span></label>
+      </div>
+    </div>
+
+    <p class="shop-note">소금은 별도로 준비해 갑니다. 이 외 필요한게 있으면 구매하세요.</p>
   </section>
 
   <p class="foot">키퍼코리아 · 즐거운 워크샵 되세요</p>
 
 </div>
+
+<script>
+(function(){
+  var KEY = 'keeper_ws1_shop';
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#shopList input[type=checkbox]'));
+  var countEl = document.getElementById('shopCount');
+  var totalEl = document.getElementById('shopTotal');
+  var resetBtn = document.getElementById('resetBtn');
+  totalEl.textContent = boxes.length;
+
+  function readStore(){
+    try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; }
+    catch(e){ return {}; }
+  }
+  function writeStore(obj){
+    try { localStorage.setItem(KEY, JSON.stringify(obj)); } catch(e){}
+  }
+  function refresh(){
+    var n = 0;
+    boxes.forEach(function(b){
+      var row = b.closest('.check');
+      if (b.checked){ n++; row.classList.add('done'); }
+      else { row.classList.remove('done'); }
+    });
+    countEl.textContent = n;
+  }
+
+  var saved = readStore();
+  boxes.forEach(function(b){
+    var k = b.getAttribute('data-k');
+    if (saved[k]) b.checked = true;
+    b.addEventListener('change', function(){
+      var s = readStore();
+      if (b.checked) s[k] = 1; else delete s[k];
+      writeStore(s);
+      refresh();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    boxes.forEach(function(b){ b.checked = false; });
+    writeStore({});
+    refresh();
+  });
+
+  refresh();
+})();
+</script>
 </body>
 </html>
